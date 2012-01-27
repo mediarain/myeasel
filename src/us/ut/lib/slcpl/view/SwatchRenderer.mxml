@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx" 
+		autoDrawBackground="false">
+	
+	<fx:Script>
+		<![CDATA[
+			[Bindable]
+			protected var includeContrastBorder:Boolean;
+			
+			override public function set data(value:Object):void
+			{
+				super.data = value;
+				includeContrastBorder = value == 0xffffff;
+			}
+		]]>
+	</fx:Script>
+	
+	<s:states>
+		<s:State name="normal" />
+		<s:State name="hovered" />
+		<s:State name="selected" />
+		<s:State name="normalAndShowsCaret" />
+		<s:State name="hoveredAndShowsCaret" />
+		<s:State name="selectedAndShowsCaret" />
+	</s:states>
+	
+	<s:Rect left="0" top="0" right="0" bottom="0">
+		<s:fill>
+			<s:SolidColor color="{data}"/>
+		</s:fill>
+	</s:Rect>
+	
+	<s:Rect left="0" top="0" right="0" bottom="0" includeInLayout="{includeContrastBorder}">
+		<s:stroke>
+			<s:SolidColorStroke color="#d9d9d9"/>
+		</s:stroke>
+	</s:Rect>
+	
+	<s:Rect left="-2" top="-2" right="-2" bottom="-2" includeIn="selected, hovered, hoveredAndShowsCaret, selectedAndShowsCaret">
+		<s:stroke>
+			<s:SolidColorStroke color="#0080ff"/>
+		</s:stroke>
+	</s:Rect>
+</s:ItemRenderer>

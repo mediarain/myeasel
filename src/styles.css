@@ -1,0 +1,23 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+
+@font-face {
+	src: url("/assets/GEORGIA.TTF");
+	fontFamily: "Georgia";
+}
+
+s|VScrollBar
+{
+	skin-class: ClassReference("us.ut.lib.slcpl.view.skin.VScrollBarSkin");
+}
+
+s|DropDownList
+{
+	skin-class: ClassReference("us.ut.lib.slcpl.view.skin.DropDownListSkin");
+}
+
+s|TextArea
+{
+	skin-class: ClassReference("us.ut.lib.slcpl.view.skin.TextAreaSkin");
+}

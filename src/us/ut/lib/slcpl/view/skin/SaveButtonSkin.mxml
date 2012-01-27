@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+
+    ADOBE SYSTEMS INCORPORATED
+    Copyright 2008 Adobe Systems Incorporated
+    All Rights Reserved.
+
+    NOTICE: Adobe permits you to use, modify, and distribute this file
+    in accordance with the terms of the license agreement accompanying it.
+
+-->
+
+<!--- The default skin class for the Spark Button component.  
+
+       @see spark.components.Button
+        
+      @langversion 3.0
+      @playerversion Flash 10
+      @playerversion AIR 1.5
+      @productversion Flex 4
+-->
+<s:SparkSkin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" 
+             xmlns:fb="http://ns.adobe.com/flashbuilder/2009" xmlns:mx="library://ns.adobe.com/flex/mx"
+			 alpha.disabled=".5">
+    
+    <!-- host component -->
+    <fx:Metadata>
+        <![CDATA[ 
+        /** 
+         * @copy spark.skins.spark.ApplicationSkin#hostComponent
+         */
+        [HostComponent("us.ut.lib.slcpl.view.SaveButton")]
+        ]]>
+    </fx:Metadata>
+    
+    <!-- states -->
+    <s:states>
+        <s:State name="up" />
+        <s:State name="over" />
+        <s:State name="down" />
+        <s:State name="disabled" />
+		<s:State name="saving"/>
+    </s:states>
+	
+	<s:transitions>
+		<s:Transition fromState="*" toState="saving">
+			<s:Resize target="{progress}" widthFrom="0" widthTo="10" repeatCount="0" duration="1000"/>
+		</s:Transition>
+	</s:transitions>
+	
+	<!-- hit area -->
+	<s:Rect top="0" right="0" bottom="0" left="0">
+		<s:fill>
+			<s:SolidColor color="#ff0000" alpha="0"/>
+		</s:fill>
+	</s:Rect>
+	
+	<s:HGroup gap="7" verticalAlign="middle">
+		<s:Group>
+			<s:Rect id="bullet" width="10" height="10">
+				<s:fill>
+					<s:SolidColor color="#a0cd3f" color.over="#7BA614"/>
+				</s:fill>
+			</s:Rect>
+			
+			<s:Rect id="progress" width="0" height="10" includeIn="saving">
+				<s:fill>
+					<s:SolidColor color="#77992e"/>
+				</s:fill>
+			</s:Rect>
+		</s:Group>
+		
+		<mx:Image source="@Embed(source='/assets/save.png')" 
+				source.saving="@Embed(source='/assets/saving.png')" verticalCenter="0"/>
+	</s:HGroup>
+    
+</s:SparkSkin>

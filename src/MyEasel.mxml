@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600" 
+			   xmlns:components="watercolor.elements.components.*" 
+			   xmlns:local="*" 
+			   xmlns:view="us.ut.lib.slcpl.view.*" 
+			   xmlns:editor="us.ut.lib.slcpl.view.editor.*">
+
+	<fx:Script>
+		<![CDATA[
+			import mx.core.IVisualElement;
+			
+			import spark.components.Group;
+			
+			import us.ut.lib.slcpl.view.skin.IntroButtonSkin;
+		]]>
+	</fx:Script>
+
+	<fx:Declarations>
+		<local:AppContext contextView="{this}"/>
+	</fx:Declarations>
+	
+	<fx:Style source="styles.css"/>
+	
+	<s:layout>
+		<s:HorizontalLayout paddingTop="9" paddingRight="9" paddingBottom="9" paddingLeft="9"/>
+	</s:layout>
+	
+	<s:VGroup gap="5">
+		
+		<!-- Grouped for easily taking a snapshot for saving. -->
+		<s:VGroup id="workAreaAndStory" gap="5">
+			<s:Group width="680" height="450">
+				<editor:MyEaselWorkarea width="100%" height="100%" 
+						skinClass="us.ut.lib.slcpl.view.skin.editor.WorkareaSkin"/>
+				<view:DragShapesHint width="100%" height="100%"/>
+				<s:Button id="introButton" skinClass="us.ut.lib.slcpl.view.skin.IntroButtonSkin"
+						click="{introButton.visible = false}" width="100%" height="100%"/>
+			</s:Group>
+			<view:StoryTextArea width="100%" height="72"/>
+		</s:VGroup>
+		<view:Menu width="100%"/>
+	</s:VGroup>
+	<view:Toolbox width="615" height="526"/>
+</s:Application>

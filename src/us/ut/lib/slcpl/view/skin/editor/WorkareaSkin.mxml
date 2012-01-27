@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
+		xmlns:fb="http://ns.adobe.com/flashbuilder/2009" alpha.disabled="0.5"
+		xmlns:components="watercolor.elements.components.*"
+		xmlns:elements="watercolor.elements.*" 
+		xmlns:mats="assets.graphics.mats.*"
+		currentState="{hostComponent.currentState}" xmlns:editor="us.ut.lib.slcpl.view.editor.*">
+	
+	<fx:Metadata>
+		[HostComponent("watercolor.elements.components.Workarea")]
+	</fx:Metadata>
+	
+	<fx:Script>
+		<![CDATA[
+			import watercolor.elements.components.Workarea;
+		]]>
+	</fx:Script>
+	
+	<s:states>
+		
+		<s:State name="normal" />
+		<s:State name="imagine" />
+		
+		<!-- TODO: Skin Cake Mat -->
+		<s:State name="cake" />
+		
+		<s:State name="disabled"/>
+	</s:states>
+	
+	<!--- @copy watercolor.elements.components.Workarea#viewport -->
+	<s:Group id="viewport" left="0" top="0" right="0" bottom="0" clipAndEnableScrolling="true">
+		
+		<!--- @copy watercolor.elements.components.Workarea#documentLayer -->
+		<s:Group id="documentLayer" left="0" top="0" right="0" bottom="0">
+			<elements:Group id="contentGroup" width="100%" height="100%" mouseEnabled="false">
+				<elements:Layer id="backgroundLayer" width="100%" height="100%" mouseEnabled="false"/>
+				<elements:Layer id="contentLayer" width="100%" height="100%" mouseEnabled="false"/>
+			</elements:Group>
+		</s:Group>
+		
+		<components:IsolationLayer id="isolationLayer" viewPort="{viewport}" 
+								   contentGroupScaleX="{documentLayer.scaleX}" contentGroupScaleY="{documentLayer.scaleY}" width="100%" height="100%"
+								   separationPaddingX="10" separationPaddingY="10" separateText="Separate" combineText="Combine"/>
+		
+		<!--- @copy watercolor.elements.components.Workarea#selectionLayer -->
+		<components:SelectionLayer id="selectionLayer" left="0" top="0" right="0" bottom="0"
+				skinClass="us.ut.lib.slcpl.view.skin.editor.SelectionLayerSkin"/>
+	</s:Group>
+</s:Skin>

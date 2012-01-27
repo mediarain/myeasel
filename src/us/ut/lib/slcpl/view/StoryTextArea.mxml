@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:TextArea xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		fontFamily="Georgia" fontSize="12" color="{PROMPT_COLOR}" text="{PROMPT}"
+		focusIn="removeAddPrompt();" focusOut="removeAddPrompt();"
+		change="textarea1_changeHandler(event)" focusAlpha="0">
+	<fx:Script>
+		<![CDATA[
+			import mx.core.mx_internal;
+			
+			import spark.events.TextOperationEvent;
+			protected const PROMPT:String = 'Type the story here.';
+			protected const PROMPT_COLOR:uint = 0x999999;
+			protected const CONTENT_COLOR:uint = 0x000000;
+			
+			/**
+			 * Take any necessary actions to make the textarea look good for the artwork snapshot.
+			 */
+			public function preSnapshot():void
+			{
+				if (text == PROMPT)
+				{
+					text = '';
+				}
+				
+				// We don't any selection or cursor being in the snapshot.
+				selectRange(-1, -1);
+				setStyle('borderVisible', false);
+				validateNow(); // Must validate now because snapshot will be happening on this frame.
+			}
+			
+			/**
+			 * Take any necessary actions to make the textarea look approximately the way it did 
+			 * before the artwork snapshot.
+			 */
+			public function postSnapshot():void
+			{
+				if (text == '')
+				{
+					text = PROMPT;
+				}
+				setStyle('borderVisible', true);
+			}
+			
+			/**
+			 * Toggle the prompt and font color if possible.
+			 */
+			protected function removeAddPrompt():void
+			{
+				if (text == PROMPT)
+				{
+					text = "";
+					setStyle('color', CONTENT_COLOR);
+				}
+				else if (text == "")
+				{
+					text = PROMPT;      
+					setStyle('color', PROMPT_COLOR);
+				}
+			}
+
+			protected var cachedText:String;
+			
+			protected function textarea1_changeHandler(event:TextOperationEvent):void
+			{
+				// A quick and dirty way to limit the user from going beyond the text area's bounds.
+				// This is used instead of maxChars becuase the maximum number of chars that can
+				// fit into the area differs greatly depending on the characters used.
+				if (textDisplay.mx_internal::textContainerManager.numLines > 4)
+				{
+					text = cachedText;
+					textDisplay.selectRange(text.length, text.length);
+				}
+				else
+				{
+					cachedText = text;
+				}
+			}
+
+		]]>
+	</fx:Script> 
+</s:TextArea>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark"
+		xmlns:transform="watercolor.transform.*"
+		width="400" height="300">
+	
+	<fx:Metadata>[HostComponent("watercolor.transform.TransformLayer")]</fx:Metadata>
+	
+	<s:states>
+		<s:State name="nonselected"/>
+		<s:State name="selected"/>
+	</s:states>
+	
+	<s:Rect id="selectionBounds" visible="false" visible.selected="true">
+		<s:stroke>
+			<s:SolidColorStroke color="#008bfb" weight="2" scaleMode="none" caps="none"/>
+		</s:stroke>
+	</s:Rect>
+	
+	<transform:Handle id="topRightBtn"
+					  skinClass="us.ut.lib.slcpl.view.skin.editor.ScaleHandleSkin"
+					  visible="false" visible.selected="true"
+					  focusEnabled="false"/>
+	
+	<transform:Handle id="bottomRightRotateBtn"
+					  skinClass="us.ut.lib.slcpl.view.skin.editor.RotateHandleSkin"
+					  visible="false" visible.selected="true"
+					  focusEnabled="false"/>
+	
+	
+</s:Skin>

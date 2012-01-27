@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:view="us.ut.lib.slcpl.view.*">
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.effects.Parallel;
+			import mx.states.Transition;
+			
+			import spark.effects.Fade;
+			
+			import us.ut.lib.slcpl.view.skin.ClearArtboardButtonSkin;
+			import us.ut.lib.slcpl.view.skin.SaveButtonSkin;
+			protected var statusTransition:Transition;
+			
+			public function setStatusText(text:String, isError:Boolean=false):void
+			{
+				var labelColor:uint = isError ? 0xba1b31 : 0x77992e;
+				statusLabel.setStyle('color', labelColor);
+				statusLabel.text = text;
+				showStatus.play();
+			}
+			
+			public function set savingArtwork(value:Boolean):void
+			{
+				saveButton.savingArtwork = value;
+			}
+			
+			public function set saveable(value:Boolean):void
+			{
+				clearButton.enabled = saveButton.enabled = value;
+			}
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<s:Sequence id="showStatus" target="{statusLabel}">
+			<s:SetAction property="alpha" value="1"/>
+			<s:Pause duration="4000"/>
+			<s:Fade alphaFrom="1" alphaTo="0" duration="500"/>
+		</s:Sequence>
+	</fx:Declarations>
+	
+	<s:Button id="clearButton" label="Clear Artboard"
+			skinClass="us.ut.lib.slcpl.view.skin.ClearArtboardButtonSkin"
+			focusEnabled="false"/>
+	<s:Label id="statusLabel" horizontalCenter="0" verticalCenter="0" 
+			fontFamily="Georgia" fontSize="12"/>
+	<view:SaveButton id="saveButton" label="Save" right="0"
+			skinClass="us.ut.lib.slcpl.view.skin.SaveButtonSkin"
+			focusEnabled="false" enabled="false"/>
+</s:Group>
