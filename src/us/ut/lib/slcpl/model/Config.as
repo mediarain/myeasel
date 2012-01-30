@@ -16,7 +16,8 @@ package us.ut.lib.slcpl.model
 			if (url.indexOf('http://') == -1 && 
 					Application(FlexGlobals.topLevelApplication).url.indexOf('file://') > -1)
 			{
-				return 'http://slcpl.hyrumt.dev.rain.local' + url;
+				//return 'http://slcpl.hyrumt.dev.rain.local' + url;
+				return 'http://www.slcpl.lib.ut.us' + url;
 			}
 			return url;
 		}
